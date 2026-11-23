@@ -34,7 +34,11 @@ public class ThreeSumClosest {
                 if (currDiff < minDiff) {
                     minDiff = currDiff;
                     closestSum = sum;
-                } else if (sum < target) {
+                } 
+                
+                if(sum == target){
+                    return sum;
+                }else if (sum < target) {
                     pointer1++;
                 } else {
                     pointer2--;

@@ -50,16 +50,5 @@ public class ThreeSum {
         }
 
         return resList;
-
-        // for(int i = 0; i < arrLen; i++){
-        // for(int j = i + 1; j < arrLen; j++){
-        // for (int k = j + 1;k < arrLen; k++){
-        // if(nums[i] + nums[j] + nums[k] == 0){
-
-        // }
-
-        // }
-        // }
-        // }
     }
 }
