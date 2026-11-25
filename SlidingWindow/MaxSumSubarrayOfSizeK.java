@@ -30,7 +30,8 @@ public class MaxSumSubarrayOfSizeK {
             if (high == arr.length) {
                 break;
             }
-            sum = sum - arr[low - 1] + arr[high];
+            sum = sum - arr[low - 1];
+            sum = sum + arr[high];
 
         }
         return max;
