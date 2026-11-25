@@ -215,5 +215,25 @@ Review these **6 common traps** before solving any Sliding Window problem:
 1. **Re-looping over the middle (`O(n²)` Trap)**
    * *Mistake:* Writing `for (int i = low; i < low + k; i++)` inside your main loop to recalculate `sum` from scratch.
    * *Fix:* Never re-scan inside the window. Only subtract `arr[low]` and add `arr[high]`.
+
 2. **Forgetting one half of the slide**
    * *Mistake:* Subtracting `arr[low - 1]` when sliding right, but forgetting to add `arr[high]`.
+   * *Fix:* Every slide in a fixed window MUST have **both** operations: `- outgoing` AND `+ incoming`.
+
+3. **Starting the outer loop with `low` in Variable Window problems**
+   * *Mistake:* Writing `while (low < nums.length)` and getting stuck on where `high` begins.
+   * *Fix:* In variable-size windows, **`high` ALWAYS leads** (`for (int high = 0; high < n; high++)`), and **`low` ALWAYS follows** inside an inner `while` loop.
+
+4. **Mixing up "What Makes the Window Valid" vs. "What the Question Asks For"**
+   * *Mistake:* Tracking `max = Integer.MIN_VALUE` and `Math.max(max, sum)` when the question asks for **minimum length**.
+   * *Fix:* Separate the two before coding:
+     * *Condition:* `sum >= target`
+     * *Answer Metric:* `high - low + 1` minimized with `Math.min()`
+
+5. **Using `if` instead of `while` to shrink in Variable Windows**
+   * *Mistake:* Writing `if (sum >= target)` instead of `while (sum >= target)`.
+   * *Fix:* Adding one large number at `high` might allow you to drop **multiple** small numbers from `low` (e.g., `[1, 1, 1, 10]` with `target = 10` shrinks 3 times). Always use `while`.
+
+6. **Forgetting the `+ 1` in window length or missing the "No Answer" edge case**
+   * *Mistake:* Writing `high - low` instead of `high - low + 1`, or returning `nums.length + 1` / `Integer.MAX_VALUE` when no subarray meets `target`.
+   * *Fix:* Length is always `high - low + 1`, and always check `if (minLen > nums.length) return 0;` at the end.
