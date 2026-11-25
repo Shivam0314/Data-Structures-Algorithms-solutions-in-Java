@@ -237,3 +237,14 @@ Review these **6 common traps** before solving any Sliding Window problem:
 6. **Forgetting the `+ 1` in window length or missing the "No Answer" edge case**
    * *Mistake:* Writing `high - low` instead of `high - low + 1`, or returning `nums.length + 1` / `Integer.MAX_VALUE` when no subarray meets `target`.
    * *Fix:* Length is always `high - low + 1`, and always check `if (minLen > nums.length) return 0;` at the end.
+
+
+
+---
+
+## Quick Comparison Table
+
+| Problem | Window Type | How `low` & `high` Move | Answer Metric & Init | Time / Space |
+| :--- | :--- | :--- | :--- | :--- |
+| **`MaxSumSubarrayOfSizeK`** | **Fixed** (`size == k`) | Both start `k - 1` apart and increment together (`low++`, `high++`) in a `while` loop | Maximize `sum` (`Integer.MIN_VALUE`) | **O(n)** time / **O(1)** space |
+| **`MinimumSizeSubarraySum`** | **Variable** (`sum >= target`) | `high` expands in a `for` loop; `low` shrinks inside a `while (sum >= target)` loop | Minimize `high - low + 1` (`nums.length + 1`) | **O(n)** time / **O(1)** space |
